@@ -4,6 +4,7 @@
 #include <iostream>
 using std::ostream;
 #include <string>
+#include <vector>
 #include "Valuable.hpp"
 
 // Class for vertex representation, contains id, name, degree values
@@ -13,10 +14,11 @@ public:
     int id;
     std::string name;
     int in_degree, out_degree; // vertex degree
+    std::vector<Vertex> v_adjacents;
 
-    Vertex (int __id): id(__id), name(std::to_string(__id)), out_degree(0), in_degree(0), Valuable() {};
+    Vertex (int __id): id(__id), name(std::to_string(__id)), out_degree(0), in_degree(0), v_adjacents(std::vector<Vertex>()), Valuable() {};
 
-    Vertex (std::string __name): id(0), name(__name), out_degree(0), in_degree(0), Valuable() {};
+    Vertex (std::string __name): id(0), name(__name), out_degree(0), in_degree(0), v_adjacents(std::vector<Vertex>()), Valuable() {};
 
     ~Vertex () {};
 

@@ -7,7 +7,7 @@ protected:
     bool valued;
 
 public:
-    Valuable() : valuated(false), value(0) {};
+    Valuable() : valued(false), value(0) {};
     ~Valuable() {};
     Vtype value;
     virtual void set_value (Vtype __v) {
