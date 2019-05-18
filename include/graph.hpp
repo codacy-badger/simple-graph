@@ -20,13 +20,25 @@ public:
     std::vector<Vertex> vertices;
     std::vector<Edge> edges;
 
-    // constructor: directed edges by default
+    // Graph constructor: directed edges by default
     // gets the number of vertices and edges direction
     Graph (unsigned int __num_vertices, direction_type __dir = directedE) : direction(__dir) {
         // initialize the vector of vertices
         for (int i=0; i < __num_vertices; i++)
             vertices.push_back( Vertex(i) );
     };
+
+    // Graph constructor getting vectors of vertex and edges
+    Graph (std::vector<Vertex>& _vSet, std::vector<Edge>& _eSet):
+         direction(bidiretionalE), vertices(_vSet), edges(_eSet) {};
+
+    // Graph constructor getting arrays of vertex and edges and mapping to vectors
+    /*Graph (Vertex __varray[], Edge __earray[]): direction(bidiretionalE) {
+        int vlen = (int) sizeof(__varray)/sizeof(Vertex);
+        for (int i=0; i < vlen; i++) {
+
+        }
+    };*/
 
     // add vertex on vertex set 
     void add_vertex (Vertex &__v) {
