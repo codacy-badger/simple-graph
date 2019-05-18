@@ -3,35 +3,40 @@
 
 #include <iostream>
 #include <vector>
-#include "adjacency.hpp"
+#include <list>
+#include "ve_descriptors.hpp"
 
-class AdjacencyList : public adjacency, public std::vector< std::vector<Vertex> > {
+// Adjacency list class is built from sets of vertices and edges
+
+class adjacency_list : public std::vector< std::list<Vertex> > {
 public:
-    using adjacency::vertices;
-    using adjacency::num_edges;
-    using adjacency::num_vertices;
+    using std::vector< std::list<Vertex> >::iterator;
+    using std::vector< std::list<Vertex> >::push_back;
 
+    typedef std::vector<Edge> vec_edge; // conjunto de arestas
+    typedef std::vector<Vertex> vec_vertex; // conjunto de vertices
     typedef std::vector<Vertex>::iterator vertex_iterator; // percorre conjuntos de vertices
+    typedef iterator adjacency_iterator; // percorre o vector de vectors de vertices
+    
 
-    // Adjacency List gets a set of vertices
-    AdjacencyList (std::vector<Vertex> __vset) : std::vector< std::vector<Vertex> >(__vset.size(), std::vector<Vertex>()) {
-        num_vertices = __vset.size();
-        num_edges = 0;
-        vertices = __vset;
-    };
-
-    ~AdjacencyList () {};
-
-    friend std::ostream& operator<< (std::ostream &__os, const AdjacencyList &__al) {
-        for (auto vi = __al.vertices.begin() ; vi != __al.vertices.end() ; ++vi) {
-            __os << "[" << *vi << "] --> (";
-            for (auto adjacent = vi->v_adjacents.begin() ; adjacent != vi->v_adjacents.end() ; ++adjacent) {
-                __os << "  " << *adjacent;
+    // class constructor gets the sets of vertices and edges
+    // should build the adjacency structure 
+    adjacency_list (vec_vertex& V, vec_edge& E) : std::vector< std::list<Vertex> >(V.size(), std::list<Vertex>()) {
+        /*
+        vertex_iterator vi = V.begin();
+        for (; vi != V.end(); ++vi) {
+            for (Edge e : E) { // para cada aresta
+                if (*vi == e.first) // inserir adjacecia (e.second)
             }
-            __os << " )\n";
         }
-        return __os;
+        */
     };
+
+    ~adjacency_list () {};
+
+    void add_vertex(int __id) {
+    };
+
 };
 
 #endif
