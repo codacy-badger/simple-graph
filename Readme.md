@@ -1,6 +1,7 @@
 ## Simple Graph
 
-Biblioteca de Grafos em C++.
-C++ Graph Library.
+### Simple Graph Implementation Library
 
-The library aims to simplicity and dynamism.
+A C++ Graph Library.
+
+The objective of the library is to provide a simple and direct computational implementation of graphs for the modeling of simple problems.
