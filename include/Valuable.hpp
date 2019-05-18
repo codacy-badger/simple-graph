@@ -7,12 +7,13 @@ protected:
     bool valued;
 
 public:
-    Valuable() : valued(false), value(0) {};
-    ~Valuable() {};
     Vtype value;
-    virtual void set_value (Vtype __v) {
-        value = __v;
-    };
+
+    // Valuable is created with value zero and not-valued value (valued=false)
+    Valuable() : valued(false), value(Vtype()) {};
+    ~Valuable() {};
+
+    bool is_valued () { return valued;};
 };
 
 #endif
