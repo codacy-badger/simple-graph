@@ -1,5 +1,7 @@
 ## Simple Graph
 
+[![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
+
 ### Simple Graph Implementation Library
 
 A C++ Graph Library.
