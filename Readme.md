@@ -1,6 +1,6 @@
 ## Simple Graph
 
-[![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/GPL-3.0)
 
 ### Simple Graph Implementation Library
 
