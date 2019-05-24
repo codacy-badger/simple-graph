@@ -4,14 +4,7 @@
 #include "adjacency.hpp"
 
 
-/** Graph class base
- * Abstract/Virtual class, cannot be instanced
- */
-class graph {
-    virtual ~graph ();
-    std::vector<Vertex> vertices;
-    std::vector<Edge> edges;
-};
+
 
 /** Redefinition of adjacency types
  * 
@@ -27,13 +20,23 @@ typedef AdjacencyMatrix matrixG;
  * represent the adjacencies of graph vertices
  */
 template <class AdjType = listG>
-class Graph : AdjType {
+class Graph : public AdjType {
 public:
+    std::vector<Vertex> vertices;
+    std::vector<Edge> edges;
     /** Graph constructor
+     * @param: Number of vertices
+     * 
+     * Add vertices with id from 0 until @param.
      */
-    explicit Graph (const unsigned int num_vertices): AdjType(num_vertices) {
+    explicit Graph (const unsigned int num_vertices): AdjType(num_vertices, directed) {
         static_assert(std::is_base_of<adjacency_base, AdjType>::value, "Template class is not an adjacency type");
+        // create the vertices from 0 until NV
+        for (int i=0; i < num_vertices; i++) {
+            vertices.push_back( Vertex(i) );
+        }
     };
+
 };
 
 
@@ -43,7 +46,7 @@ public:
  * implemented considerating an orientation on edges
  */
 template <class AdjType = listG>
-class Digraph : AdjType {
+class Digraph : public graph<AdjType> {
 
 };
 
