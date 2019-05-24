@@ -1,64 +1,51 @@
-#ifndef _GRAPH_
-#define _GRAPH_
+#ifndef _SGRAPH_GRAPH_HPP_
+#define _SGRAPH_GRAPH_HPP_
 
-#include "adjacency_list.hpp"
+#include "adjacency.hpp"
 #include "graph_properties.hpp"
 
-//
-// Constants for graph properties
 
-// type defines the edges direction
-enum direction_type {directedE, bidiretionalE};
-
-
-class Graph {
-public:
-    typedef std::vector<Vertex>::iterator vertex_iterator;
-    typedef std::vector<Edge>::iterator edge_iterator;
-
-    direction_type direction;
+/** Graph class base
+ * Abstract/Virtual class, cannot be instanced
+ */
+class graph {
+    virtual ~graph ();
     std::vector<Vertex> vertices;
     std::vector<Edge> edges;
+};
 
-    // Graph constructor: directed edges by default
-    // gets the number of vertices and edges direction
-    Graph (unsigned int __num_vertices, direction_type __dir = directedE) : direction(__dir) {
-        // initialize the vector of vertices
-        for (int i=0; i < __num_vertices; i++)
-            vertices.push_back( Vertex(i) );
-    };
 
-    // Graph constructor getting vectors of vertex and edges
-    Graph (std::vector<Vertex>& _vSet, std::vector<Edge>& _eSet):
-         direction(bidiretionalE), vertices(_vSet), edges(_eSet) {};
+/** Redefinition of adjacency types
+ * 
+ * Can be list or matrix, the value will define the class which
+ * the graph will be represented.
+ */
+typedef AdjacencyList listG;
+//typedef AdjacencyMatrix matrixG;
 
-    // Graph constructor getting arrays of vertex and edges and mapping to vectors
-    /*Graph (Vertex __varray[], Edge __earray[]): direction(bidiretionalE) {
-        int vlen = (int) sizeof(__varray)/sizeof(Vertex);
-        for (int i=0; i < vlen; i++) {
 
-        }
-    };*/
+/** Graph class
+ * 
+ * The graph has two sets (Vertex and Edges) and a object which aims
+ * represent the adjacencies of graph vertices
+ */
+template <class AdjType = listG>
+class Graph : graph {
+public:
+    /** Graph constructor
+     */
+    explicit Graph(const unsigned int num_vertices)
+};
 
-    // add vertex on vertex set 
-    void add_vertex (Vertex &__v) {
-        vertices.push_back(__v);
-    };
-    // add vertex on vertex set with the int id
-    void add_vertex (int __i) {
-        vertices.push_back( Vertex(__i) );
-    };
 
-    // add edges on edges set
-    void add_edge(Edge __e) {
-        edges.push_back(__e);
-        if (direction == bidiretionalE)
-            edges.push_back( Edge(__e.second, __e.first) ); // reflexo
-    };
-    // add edge gettin tw int vertex id
-    void add_edge(int _i1, int _i2) {
-        add_edge( Edge(_i1, _i2) );
-    };
+/** DiGraph: Directed Graph class
+ * 
+ * The directed graph extends of graph, but yours edge methods are
+ * implemented considerating an orientation on edges
+ */
+template <class AdjType = listG>
+class Digraph : graph {
+
 };
 
 #endif

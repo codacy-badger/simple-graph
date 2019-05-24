@@ -21,21 +21,11 @@ public:
 
     // class constructor gets the sets of vertices and edges
     // should build the adjacency structure 
-    adjacency_list (vec_vertex& V, vec_edge& E) : std::vector< std::list<Vertex> >(V.size(), std::list<Vertex>()) {
-        /*
-        vertex_iterator vi = V.begin();
-        for (; vi != V.end(); ++vi) {
-            for (Edge e : E) { // para cada aresta
-                if (*vi == e.first) // inserir adjacecia (e.second)
-            }
-        }
-        */
-    };
+    adjacency_list (vec_vertex& V, vec_edge& E) : std::vector< std::list<Vertex> >(V.size(), std::list<Vertex>()) {};
 
     ~adjacency_list () {};
 
-    void add_vertex(int __id) {
-    };
+    void add_vertex(int __id) {};
 
 };
 

@@ -1,5 +1,5 @@
-#ifndef _adjacency_
-#define _adjacency_
+#ifndef _SGRAPH_ADJACENCY_HPP_
+#define _SGRAPH_ADJACENCY_HPP_
 
 #include <vector>
 #include "ve_descriptors.hpp"
@@ -8,24 +8,33 @@
 // implemented by adjacency_list and adjacency_matrix
 class adjacency_base {
 public:
-    // redefine types
-    typedef Vertex V;
-    typedef Edge E;
-
     unsigned int num_vertices;
     unsigned int num_edges;
 
     virtual ~adjacency_base();
 
     // add edges with differents paramethers
-    virtual void add_edge(E& __edge);
-    virtual void add_edge(V& __v1, V& __v2);
-    virtual void add_edge(int _id1, int _id2);
+    virtual void add_edge(Edge&);
+    virtual void add_edge(Vertex&, Vertex&);
+    virtual void add_edge(int, int);
 
     // add vertices with differents paramethers
-    virtual void add_vertex(V& vertex);
-    virtual void add_vertex(int __id);
-    virtual void add_vertex(std::string _vname);
+    virtual void add_vertex(Vertex&);
+    virtual void add_vertex(int);
+};
+
+//========================================================================
+/**
+ * Adjacency list class represents a graph through a list of lists,
+ * is a specifing of adjacency
+ */
+class AdjacencyList : public adjacency_base, public std::vector< std::vector<Vertex> > {
+public:
+    // AdjacencyList gets references to vertex set and edges set
+    AdjacencyList (std::vector<Vertex>& vecV, std::vector<Edge>& vecE)
+     : std::vector< std::vector<Vertex> >() {
+
+    };
 };
 
 #endif
