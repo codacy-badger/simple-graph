@@ -18,9 +18,9 @@ public:
     std::string name; // vertex name
     int in_degree, out_degree; // vertex degree
 
-    Vertex (int __id): id(__id), name(std::to_string(__id)), out_degree(0), in_degree(0), Valuable() {};
-
-    Vertex (std::string __name): id(0), name(__name), out_degree(0), in_degree(0), Valuable() {};
+    // Vertex Constructor gets an id for the vertex
+    explicit Vertex (int __id): id(__id), name(std::to_string(__id)),
+     out_degree(0), in_degree(0), Valuable() {};
 
     ~Vertex () {};
 
@@ -49,18 +49,15 @@ public:
 
 
 // Class to represent Edges, contains the vertices and values info
-class Edge : public std::pair<Vertex, Vertex>, public Valuable<float> {
+class Edge : public std::pair<Vertex&, Vertex&>, public Valuable<float> {
 public:
     using Valuable::valued;
     using Valuable::is_valued;
     typedef Vertex V;
     
     // constructor, extends from std::pair and Valuable
-    // gets two Vertex objects
-    Edge (V &__v1, V &__v2) : std::pair<V, V>(__v1, __v2), Valuable() {};
-    
-    // constructor getting two int ids
-    Edge (int __v1, int __v2) : std::pair<V, V>(Vertex(__v1), Vertex(__v2)), Valuable() {};
+    // gets reference to 2 Vertex objects
+    Edge (V &__v1, V &__v2) : std::pair<V&, V&>(__v1, __v2), Valuable() {};
 
     ~Edge () {};
 
