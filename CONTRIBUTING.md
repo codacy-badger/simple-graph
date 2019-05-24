@@ -11,5 +11,3 @@ It is very important to keep the source code simple and cohesive, said that we t
 We using coding standards proposed by Google to C++ programming.
 
 Read: [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
-
-
