@@ -2,7 +2,6 @@
 #define _SGRAPH_GRAPH_HPP_
 
 #include "adjacency.hpp"
-#include "graph_properties.hpp"
 
 
 /** Graph class base
@@ -14,15 +13,13 @@ class graph {
     std::vector<Edge> edges;
 };
 
-
 /** Redefinition of adjacency types
  * 
  * Can be list or matrix, the value will define the class which
  * the graph will be represented.
  */
 typedef AdjacencyList listG;
-//typedef AdjacencyMatrix matrixG;
-
+typedef AdjacencyMatrix matrixG;
 
 /** Graph class
  * 
@@ -30,11 +27,13 @@ typedef AdjacencyList listG;
  * represent the adjacencies of graph vertices
  */
 template <class AdjType = listG>
-class Graph : graph {
+class Graph : AdjType {
 public:
     /** Graph constructor
      */
-    explicit Graph(const unsigned int num_vertices)
+    explicit Graph (const unsigned int num_vertices): AdjType(num_vertices) {
+        static_assert(std::is_base_of<adjacency_base, AdjType>::value, "Template class is not an adjacency type");
+    };
 };
 
 
@@ -44,7 +43,7 @@ public:
  * implemented considerating an orientation on edges
  */
 template <class AdjType = listG>
-class Digraph : graph {
+class Digraph : AdjType {
 
 };
 
